@@ -1,0 +1,66 @@
+<app-page-header title="About Our Group" [back]="true" />
+<ion-content
+  ><main class="page-shell">
+    <p class="eyebrow blue">A MOBILE APPLICATION CASE STUDY</p>
+    <h1>Built for our<br />local everyday.</h1>
+    <p class="intro">
+      KliMahhh makes current conditions and seven-day forecasts easy to read for five selected cities in Nueva
+      Ecija.
+    </p>
+    <ion-card class="about-card"
+      ><span class="eyebrow blue">THE PROJECT</span>
+      <h2>KliMahhh</h2>
+      <p>
+        A hybrid Android weather application developed using Ionic, Angular, TypeScript, 
+        and Capacitor as part of the Mobile Application Development final case study.
+      </p>
+      <p class="course">{{ group.courseYearSection }}</p></ion-card
+    >
+    <div class="section-heading">
+      <h2>Meet our group</h2>
+      <span>Our team</span>
+    </div>
+    <ion-list class="team-list" lines="full"
+      >@for (member of group.members; track $index) {
+      <ion-item
+        ><span slot="start" class="member-number">0{{ $index + 1 }}</span
+        ><ion-label
+          ><h3>{{ member.name }}</h3>
+          <p>{{ member.role }}</p></ion-label
+        ></ion-item
+      >
+      }</ion-list
+    >
+    <br/>
+    <ion-card class="about-card"
+      ><span class="eyebrow blue">OPEN DATA, CLEAR SOURCES</span>
+      <h2>Powered by Open-Meteo</h2>
+      <p>
+        Weather data is provided by
+        <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a> under
+        <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>.
+        We format dates and measurements and translate WMO codes into readable conditions.
+      </p>
+      <p>
+        <a href="https://open-meteo.com/en/docs" target="_blank" rel="noopener noreferrer"
+          >Read the API documentation ↗</a
+        >
+      </p>
+      <p>
+        City-center coordinates are sourced from
+        <a href="https://www.philatlas.com/luzon/r03/nueva-ecija.html" target="_blank" rel="noopener noreferrer"
+          >PhilAtlas</a
+        >. Supported cities: Cabanatuan, San Jose City, Palayan, Gapan, and Science City of Muñoz.
+      </p></ion-card
+    >
+    <div class="notice">
+      <h3>A little context</h3>
+      <p>
+        This application was developed as an academic project for the Mobile Application Development course. 
+        It provides weather forecasts and local weather information for selected areas in Nueva Ecija. Forecasts are 
+        model-based and may differ from actual weather conditions. This application is not an official 
+        PAGASA service and should not be used as a substitute for official weather advisories and emergency warnings.
+      </p>
+    </div>
+    <app-source-note /></main
+></ion-content>

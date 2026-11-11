@@ -1,0 +1,78 @@
+@let current = snapshot.data.current;
+@let units = snapshot.data.current_units;
+@let dailyUnits = snapshot.data.daily_units;
+@let weather = condition(current?.weather_code);
+<ion-card class="weather-hero">
+  <div class="hero-top">
+    <span class="eyebrow">CURRENT WEATHER</span><span class="model-badge">Model forecast</span>
+  </div>
+  <h2>{{ snapshot.location.name }}</h2>
+  <p class="hero-province">Nueva Ecija, Philippines</p>
+  <div class="temperature-row">
+    <strong
+      class="temperature"
+      data-testid="current-temperature"
+      [class.missing]="current?.temperature_2m === null || current?.temperature_2m === undefined"
+      >{{ measurement(current?.temperature_2m, units?.temperature_2m) }}</strong
+    ><ion-icon class="hero-weather-icon" [name]="weather.icon" aria-hidden="true" />
+  </div>
+  <p class="condition">{{ weather.label }}</p>
+  <div class="hero-time">Model time: {{ modelTime(current?.time) }} · PHT (UTC+8)</div>
+</ion-card>
+<p class="retrieved">Retrieved {{ retrievalTime(snapshot.fetchedAt) }} PHT</p>
+<div class="section-heading">
+  <h2>{{ details ? 'Current conditions' : 'At a glance' }}</h2>
+  <span>Near city center</span>
+</div>
+<div class="metrics">
+  <ion-card class="metric"
+    ><ion-icon name="thermometer-outline" aria-hidden="true" /><span>Feels like</span
+    ><strong>{{ measurement(current?.apparent_temperature, units?.apparent_temperature) }}</strong></ion-card
+  >
+  <ion-card class="metric"
+    ><ion-icon name="water-outline" aria-hidden="true" /><span>Humidity</span
+    ><strong data-testid="humidity">{{
+      measurement(current?.relative_humidity_2m, units?.relative_humidity_2m)
+    }}</strong></ion-card
+  >
+  <ion-card class="metric"
+    ><ion-icon name="flag-outline" aria-hidden="true" /><span>Wind speed</span
+    ><strong>{{ measurement(current?.wind_speed_10m, units?.wind_speed_10m) }}</strong></ion-card
+  >
+</div>
+@if (details) {
+  <div class="section-heading">
+    <h2>7-day forecast</h2>
+    <span>Asia/Manila</span>
+  </div>
+  @if (snapshot.days.length) {
+    <ion-list class="forecast-list" lines="full">
+      @for (day of snapshot.days; track day.date) {
+        <ion-item class="forecast-day" data-testid="forecast-day"
+          ><ion-icon slot="start" [name]="condition(day.code).icon" aria-hidden="true" /><ion-label
+            ><h3>{{ dayLabel(day.date) }}</h3>
+            <p>{{ condition(day.code).label }}</p>
+            <div class="forecast-values">
+              <span
+                >Low <b>{{ measurement(day.minimum, dailyUnits?.temperature_2m_min) }}</b></span
+              ><span
+                >High <b>{{ measurement(day.maximum, dailyUnits?.temperature_2m_max) }}</b></span
+              >
+            </div>
+            <p class="rain">
+              Rain probability: {{ measurement(day.rainProbability, dailyUnits?.precipitation_probability_max) }}
+            </p></ion-label
+          ></ion-item
+        >
+      }
+    </ion-list>
+    @if (snapshot.days.length < 7) {
+      <p class="notice">Some forecast days are unavailable from the provider.</p>
+    }
+  } @else {
+    <div class="empty-state">
+      <h3>Forecast unavailable</h3>
+      <p>The provider did not return daily forecasts. Try refreshing.</p>
+    </div>
+  }
+}

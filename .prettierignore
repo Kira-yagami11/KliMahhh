@@ -3,3 +3,5 @@
 # Gradle's build output.
 android/
 ios/
+artifacts/
+.tmp/

@@ -1,0 +1,23 @@
+:host {
+  display: block;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 18px;
+  font-weight: 750;
+  letter-spacing: -0.5px;
+}
+
+.brand ion-icon {
+  color: var(--ion-color-primary);
+  font-size: 25px;
+  flex-shrink: 0;
+}
+
+ion-toolbar {
+  --background: var(--ion-toolbar-background);
+  --min-height: 66px;
+}

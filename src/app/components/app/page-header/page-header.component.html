@@ -1,0 +1,15 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    @if (back) {
+      <ion-buttons slot="start"><ion-back-button defaultHref="/home" text="Back" /></ion-buttons>
+    }
+    <ion-title
+      ><span class="brand"><ion-icon name="sunny-outline" aria-hidden="true" />{{ title }}</span></ion-title
+    >
+    <ion-buttons slot="end">
+      <ion-button aria-label="Toggle dark mode" [attr.aria-pressed]="darkMode()" (click)="toggleDarkMode()">
+        <ion-icon slot="icon-only" [name]="darkMode() ? 'sunny-outline' : 'moon-outline'" />
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>

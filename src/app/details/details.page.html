@@ -1,0 +1,38 @@
+<app-page-header title="Weather details" [back]="true" />
+<ion-content
+  ><main class="page-shell">
+    @if (location(); as selected) {
+    <div class="details-heading">
+      <div>
+        <p class="eyebrow blue">YOUR WEEK AHEAD</p>
+        <h1>{{ selected.name }}</h1>
+      </div>
+      <ion-button fill="outline" size="small" [disabled]="state().loading" (click)="refresh()"
+        ><ion-icon slot="start" name="refresh-outline" aria-hidden="true" />Refresh</ion-button
+      >
+    </div>
+    <p class="intro">A closer look at current conditions and the next seven days.</p>
+    @if (state().loading) {
+    <div class="loading-state" role="status">
+      <ion-spinner name="crescent" />
+      <h2>Loading forecast…</h2>
+      <p>Getting weather for {{ selected.name }}.</p>
+    </div>
+    } @else if (state().error) {
+    <div class="empty-state" role="alert">
+      <h2>Forecast could not be loaded</h2>
+      <p>{{ state().error }}</p>
+      <ion-button (click)="refresh()">Retry</ion-button>
+    </div>
+    } @else if (state().snapshot; as snapshot) {
+    <app-weather-panel [snapshot]="snapshot" [details]="true" />
+    } } @else {
+    <div class="empty-state">
+      <p class="eyebrow blue">LOCATION NOT FOUND</p>
+      <h1>Let's head back.</h1>
+      <p>This location is not in our supported list of five Nueva Ecija cities.</p>
+      <ion-button routerLink="/home">Back to Home</ion-button>
+    </div>
+    }
+    <app-source-note /></main
+></ion-content>

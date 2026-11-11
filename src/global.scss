@@ -10,20 +10,20 @@
  */
 
 /* Core CSS required for Ionic components to work properly */
-@import "@ionic/angular/css/core.css";
+@import '@ionic/angular/css/core.css';
 
 /* Basic CSS for apps built with Ionic */
-@import "@ionic/angular/css/normalize.css";
-@import "@ionic/angular/css/structure.css";
-@import "@ionic/angular/css/typography.css";
-@import "@ionic/angular/css/display.css";
+@import '@ionic/angular/css/normalize.css';
+@import '@ionic/angular/css/structure.css';
+@import '@ionic/angular/css/typography.css';
+@import '@ionic/angular/css/display.css';
 
 /* Optional CSS utils that can be commented out */
-@import "@ionic/angular/css/padding.css";
-@import "@ionic/angular/css/float-elements.css";
-@import "@ionic/angular/css/text-alignment.css";
-@import "@ionic/angular/css/text-transformation.css";
-@import "@ionic/angular/css/flex-utils.css";
+@import '@ionic/angular/css/padding.css';
+@import '@ionic/angular/css/float-elements.css';
+@import '@ionic/angular/css/text-alignment.css';
+@import '@ionic/angular/css/text-transformation.css';
+@import '@ionic/angular/css/flex-utils.css';
 
 /**
  * Ionic Dark Mode
@@ -32,6 +32,486 @@
  * https://ionicframework.com/docs/theming/dark-mode
  */
 
-/* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import '@ionic/angular/css/palettes/dark.system.css';
+@import '@ionic/angular/css/palettes/dark.class.css';
+* {
+  box-sizing: border-box;
+}
+.page-shell {
+  max-width: 580px;
+  margin: 0 auto;
+  padding: 28px 20px calc(24px + var(--ion-safe-area-bottom, 0px));
+}
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+h1 {
+  font-size: 32px;
+  font-weight: 760;
+  line-height: 1.18;
+  letter-spacing: -1.15px;
+  margin-bottom: 12px;
+}
+h2 {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.35px;
+}
+h3 {
+  font-size: 16px;
+  font-weight: 650;
+}
+p {
+  line-height: 1.6;
+}
+a {
+  color: #245ddb;
+  text-underline-offset: 3px;
+}
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 1.65px;
+  font-weight: 750;
+  margin-bottom: 13px;
+  line-height: 1.5;
+}
+.blue {
+  color: #245ddb;
+}
+.intro {
+  color: #62718a;
+  font-size: 14px;
+  margin-bottom: 24px;
+  max-width: 410px;
+}
+ion-button {
+  min-height: 44px;
+  --border-radius: 12px;
+  font-size: 14px;
+  font-weight: 650;
+  letter-spacing: 0.1px;
+  text-transform: none;
+}
+.location-picker {
+  background: #fff;
+  border: 1px solid #e0e6ef;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  padding: 5px 15px;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.location-picker > ion-icon {
+  color: #245ddb;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.location-picker ion-select {
+  width: 100%;
+  min-height: 58px;
+}
+ion-card {
+  box-shadow: none;
+  margin: 0;
+  border: 1px solid #e3e9f2;
+  border-radius: 17px;
+}
+.weather-hero {
+  padding: 23px;
+  background: linear-gradient(130deg, #245ddb, #347fe0);
+  color: white;
+  border: none;
+  overflow: hidden;
+}
+.hero-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 21px;
+}
+.hero-top .eyebrow {
+  margin: 0;
+  color: #e1ecff;
+  font-size: 9px;
+}
+.model-badge {
+  font-size: 10px;
+  background: #ffffff1f;
+  border: 1px solid #ffffff3a;
+  border-radius: 20px;
+  padding: 5px 9px;
+  white-space: nowrap;
+}
+.weather-hero h2 {
+  font-size: 24px;
+  color: white;
+  margin-bottom: 3px;
+}
+.hero-province {
+  font-size: 12px;
+  color: #e1ecff;
+  margin-bottom: 16px;
+}
+.temperature-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.temperature {
+  font-size: clamp(40px, 12vw, 64px);
+  letter-spacing: -3px;
+  font-weight: 650;
+  line-height: 1.2;
+}
+.temperature.missing {
+  font-size: 30px;
+  letter-spacing: -1px;
+}
+.hero-weather-icon {
+  font-size: 70px;
+  color: #ffe5a4;
+  flex-shrink: 0;
+}
+.condition {
+  margin: 8px 0 21px;
+  font-size: 16px;
+}
+.hero-time {
+  border-top: 1px solid #ffffff38;
+  padding-top: 14px;
+  font-size: 11px;
+  color: #eff5ff;
+  line-height: 1.6;
+}
+.retrieved {
+  font-size: 10px;
+  color: #6a7890;
+  margin: 9px 2px 24px;
+}
+.section-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 25px 0 13px;
+}
+.section-heading h2 {
+  margin: 0;
+}
+.section-heading > span {
+  color: #718099;
+  font-size: 10px;
+}
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+}
+.metric {
+  padding: 16px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+.metric ion-icon {
+  color: #245ddb;
+  background: #edf3ff;
+  padding: 7px;
+  font-size: 18px;
+  border-radius: 9px;
+  margin-bottom: 3px;
+}
+.metric span {
+  font-size: 10px;
+  color: #6a7890;
+}
+.metric strong {
+  font-size: 15px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+.forecast-button {
+  margin: 23px 0 20px;
+  min-height: 52px;
+  --box-shadow: 0 5px 14px #245ddb20;
+}
+.local-note {
+  display: flex;
+  gap: 10px;
+  padding: 17px;
+  background: #eaf0fa;
+  border-radius: 12px;
+}
+.local-note p {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 650;
+}
+.local-note p span {
+  font-size: 11px;
+  color: #62718a;
+  font-weight: 400;
+}
+.note-dot {
+  width: 7px;
+  height: 7px;
+  background: #245ddb;
+  border-radius: 50%;
+  margin-top: 7px;
+  flex-shrink: 0;
+}
+.about-link {
+  margin-top: 17px;
+}
+.source-note {
+  color: #6a7890;
+  font-size: 10px;
+  text-align: center;
+  line-height: 1.8;
+  margin-top: 25px;
+}
+.source-note a {
+  color: #4b648a;
+}
+.loading-state,
+.empty-state {
+  padding: 32px 18px;
+  text-align: center;
+  background: #fff;
+  border: 1px solid #e3e9f2;
+  border-radius: 17px;
+  margin: 18px 0;
+}
+.loading-state ion-spinner {
+  color: #245ddb;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 14px;
+}
+.loading-state h2,
+.empty-state h2 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+.loading-state p,
+.empty-state p {
+  color: #62718a;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+.empty-state > ion-icon {
+  font-size: 40px;
+  color: #718099;
+  margin-bottom: 14px;
+}
+.details-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+}
+.details-heading h1 {
+  font-size: 28px;
+}
+.details-heading .eyebrow {
+  margin-bottom: 9px;
+}
+.details-heading ion-button {
+  flex-shrink: 0;
+}
+.forecast-list,
+.team-list {
+  padding: 0;
+  border: 1px solid #e3e9f2;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.forecast-day {
+  --padding-start: 17px;
+  --inner-padding-end: 17px;
+}
+.forecast-day ion-icon {
+  color: #245ddb;
+  font-size: 29px;
+  margin-right: 15px;
+}
+.forecast-day ion-label {
+  margin-top: 17px;
+  margin-bottom: 17px;
+  white-space: normal;
+}
+.forecast-day h3 {
+  color: #172944;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.forecast-day p {
+  color: #62718a;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.forecast-values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px 18px;
+  font-size: 11px;
+  color: #62718a;
+  margin: 9px 0 6px;
+}
+.forecast-values b {
+  color: #172944;
+  font-weight: 650;
+  margin-left: 3px;
+}
+.forecast-day .rain {
+  color: #245ddb;
+  font-size: 11px;
+}
+.about-card {
+  padding: 22px;
+  margin-bottom: 20px;
+}
+.about-card h2 {
+  margin: 12px 0;
+}
+.about-card p {
+  color: #62718a;
+  font-size: 13px;
+}
+.about-card p:last-child {
+  margin-bottom: 0;
+}
+.course {
+  border-top: 1px solid #e3e9f2;
+  padding-top: 14px;
+  color: #172944 !important;
+  font-weight: 650;
+}
+.team-list {
+  margin-bottom: 22px;
+}
+.team-list ion-item {
+  --min-height: 82px;
+}
+.team-list h3 {
+  font-size: 14px;
+  font-weight: 650;
+}
+.team-list p {
+  color: #62718a;
+  font-size: 12px;
+}
+.member-number {
+  background: #edf3ff;
+  color: #245ddb;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.notice {
+  background: #eaf0fa;
+  border-radius: 13px;
+  padding: 18px;
+  color: #53647f;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.notice h3 {
+  color: #172944;
+  margin-bottom: 7px;
+  font-size: 14px;
+}
+.notice p {
+  margin: 0;
+}
+@media (max-width: 350px) {
+  .page-shell {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .weather-hero {
+    padding: 18px;
+  }
+  .metric {
+    padding: 13px 8px;
+  }
+  .details-heading {
+    flex-wrap: wrap;
+  }
+}
+
+html.ion-palette-dark {
+  --ion-background-color: #121826;
+  --ion-text-color: #edf2ff;
+  --ion-card-background: #1b2435;
+  --ion-item-background: #1b2435;
+  --ion-toolbar-background: #1b2435;
+  --ion-border-color: #303c52;
+  background: #121826;
+}
+
+html.ion-palette-dark body,
+html.ion-palette-dark ion-app,
+html.ion-palette-dark ion-content {
+  background: #121826;
+  color: #edf2ff;
+}
+
+html.ion-palette-dark a {
+  color: #8eb3ff;
+}
+
+html.ion-palette-dark .location-picker,
+html.ion-palette-dark .loading-state,
+html.ion-palette-dark .empty-state,
+html.ion-palette-dark ion-card,
+html.ion-palette-dark .forecast-list,
+html.ion-palette-dark .team-list {
+  background: #1b2435;
+  border-color: #303c52;
+}
+
+html.ion-palette-dark .location-picker ion-select,
+html.ion-palette-dark ion-item {
+  --background: #1b2435;
+  --color: #edf2ff;
+}
+
+html.ion-palette-dark .intro,
+html.ion-palette-dark .metric span,
+html.ion-palette-dark .retrieved,
+html.ion-palette-dark .loading-state p,
+html.ion-palette-dark .empty-state p,
+html.ion-palette-dark .forecast-day p,
+html.ion-palette-dark .forecast-values,
+html.ion-palette-dark .about-card p,
+html.ion-palette-dark .team-list p,
+html.ion-palette-dark .source-note,
+html.ion-palette-dark .local-note p span {
+  color: #aebbd0;
+}
+
+html.ion-palette-dark .local-note,
+html.ion-palette-dark .notice {
+  background: #202d43;
+  color: #c9d5e8;
+}
+
+html.ion-palette-dark .notice h3,
+html.ion-palette-dark .forecast-day h3,
+html.ion-palette-dark .forecast-values b,
+html.ion-palette-dark .course {
+  color: #edf2ff !important;
+}
+
+html.ion-palette-dark .source-note a {
+  color: #a9c5ff;
+}

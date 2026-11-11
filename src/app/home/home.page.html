@@ -1,21 +1,44 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title> Blank </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>
-      Start with Ionic
-      <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a>
-    </p>
-  </div>
-</ion-content>
+<app-page-header title="KliMahhh" />
+<ion-content
+  ><main class="page-shell">
+    <p class="eyebrow blue">NUEVA ECIJA · PHILIPPINES</p>
+    <h1>Your local weather,<br />a little clearer.</h1>
+    <p class="intro">Current conditions and the week ahead for five Nueva Ecija cities.</p>
+    <div class="location-picker">
+      <ion-icon name="location-outline" aria-hidden="true" /><ion-select
+        label="Choose your location"
+        labelPlacement="stacked"
+        interface="alert"
+        [interfaceOptions]="{ header: 'Nueva Ecija locations' }"
+        [value]="selected().id"
+        (ionChange)="selectLocation($event.detail.value)"
+      >
+        @for (location of locations; track location.id) {
+        <ion-select-option [value]="location.id">{{ location.name }}</ion-select-option> }
+      </ion-select>
+    </div>
+    @if (state().loading) {
+    <div class="loading-state" role="status">
+      <ion-spinner name="crescent" />
+      <h2>Checking {{ selected().name }}…</h2>
+      <p>Getting the latest forecast from Open-Meteo.</p>
+    </div>
+    } @else if (state().error) {
+    <div class="empty-state" role="alert">
+      <ion-icon name="cloud-offline-outline" aria-hidden="true" />
+      <h2>Weather is taking a break</h2>
+      <p>{{ state().error }}</p>
+      <ion-button (click)="retry()">Retry</ion-button>
+    </div>
+    } @else if (state().snapshot; as snapshot) { <app-weather-panel [snapshot]="snapshot" /> }
+    <ion-button class="forecast-button" expand="block" [routerLink]="['/details', selected().id]"
+      >View Forecast<ion-icon slot="end" name="arrow-forward-outline" aria-hidden="true"
+    /></ion-button>
+    <div class="local-note">
+      <span class="note-dot"></span>
+      <p>Five cities. One province.<br /><span>Forecasts use approximate city-center locations.</span></p>
+    </div>
+    <ion-button class="about-link" expand="block" fill="clear" routerLink="/about"
+      ><ion-icon slot="start" name="people-outline" aria-hidden="true" />About Our Group</ion-button
+    ><app-source-note /></main
+></ion-content>

@@ -1,6 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
 
-const baseURL = 'http://localhost:4200';
+const baseURL = 'http://localhost:4173';
 
 export default defineConfig({
   testDir: './e2e',
@@ -9,17 +9,19 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   reporter: process.env.CI ? [['github'], ['html', { open: 'never' }]] : 'list',
   use: {
+    channel: 'msedge',
     baseURL,
     trace: 'on-first-retry',
+    screenshot: 'only-on-failure',
   },
   projects: [
     {
-      name: 'Mobile Chrome',
+      name: 'Mobile Edge',
       use: { ...devices['Pixel 7'] },
     },
   ],
   webServer: {
-    command: 'npm start -- --port 4200',
+    command: 'npm run preview',
     url: baseURL,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
