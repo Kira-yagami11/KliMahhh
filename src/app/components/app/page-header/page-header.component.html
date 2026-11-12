@@ -1,13 +1,23 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar>
+  <ion-toolbar class="glass" [class.home-toolbar]="!back">
     @if (back) {
       <ion-buttons slot="start"><ion-back-button defaultHref="/home" text="Back" /></ion-buttons>
     }
     <ion-title
-      ><span class="brand"><ion-icon name="sunny-outline" aria-hidden="true" />{{ title }}</span></ion-title
+      ><span class="brand">
+        @if (!back) {
+          <img class="brand-logo" src="assets/images/klimahhh-logo.png" alt="" aria-hidden="true" />
+        }
+        {{ title }}</span
+      ></ion-title
     >
     <ion-buttons slot="end">
-      <ion-button aria-label="Toggle dark mode" [attr.aria-pressed]="darkMode()" (click)="toggleDarkMode()">
+      <ion-button
+        class="tbtn"
+        [attr.aria-label]="darkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
+        [attr.aria-pressed]="darkMode()"
+        (click)="toggleDarkMode()"
+      >
         <ion-icon slot="icon-only" [name]="darkMode() ? 'sunny-outline' : 'moon-outline'" />
       </ion-button>
     </ion-buttons>

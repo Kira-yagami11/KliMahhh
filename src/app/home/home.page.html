@@ -1,10 +1,10 @@
 <app-page-header title="KliMahhh" />
 <ion-content
   ><main class="page-shell">
-    <p class="eyebrow blue">NUEVA ECIJA · PHILIPPINES</p>
+    <p class="eyebrow green">NUEVA ECIJA · PHILIPPINES</p>
     <h1>Your local weather,<br />a little clearer.</h1>
     <p class="intro">Current conditions and the week ahead for five Nueva Ecija cities.</p>
-    <div class="location-picker">
+    <div class="location-picker glass">
       <ion-icon name="location-outline" aria-hidden="true" /><ion-select
         label="Choose your location"
         labelPlacement="stacked"
@@ -34,7 +34,7 @@
     <ion-button class="forecast-button" expand="block" [routerLink]="['/details', selected().id]"
       >View Forecast<ion-icon slot="end" name="arrow-forward-outline" aria-hidden="true"
     /></ion-button>
-    <div class="local-note">
+    <div class="local-note glass">
       <span class="note-dot"></span>
       <p>Five cities. One province.<br /><span>Forecasts use approximate city-center locations.</span></p>
     </div>

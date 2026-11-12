@@ -11,13 +11,20 @@
   letter-spacing: -0.5px;
 }
 
-.brand ion-icon {
-  color: var(--ion-color-primary);
-  font-size: 25px;
+.home-toolbar ion-title {
+  text-align: left;
+}
+
+.brand-logo {
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
   flex-shrink: 0;
 }
 
 ion-toolbar {
-  --background: var(--ion-toolbar-background);
+  --background: transparent;
   --min-height: 66px;
+  margin: 12px 12px 0;
+  padding: 0 8px;
 }

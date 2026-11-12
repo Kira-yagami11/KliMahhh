@@ -4,7 +4,7 @@
     @if (location(); as selected) {
     <div class="details-heading">
       <div>
-        <p class="eyebrow blue">YOUR WEEK AHEAD</p>
+        <p class="eyebrow green">YOUR WEEK AHEAD</p>
         <h1>{{ selected.name }}</h1>
       </div>
       <ion-button fill="outline" size="small" [disabled]="state().loading" (click)="refresh()"
@@ -33,6 +33,7 @@
       <p>This location is not in our supported list of five Nueva Ecija cities.</p>
       <ion-button routerLink="/home">Back to Home</ion-button>
     </div>
+    <br/>
     }
     <app-source-note /></main
 ></ion-content>
