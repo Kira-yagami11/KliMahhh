@@ -1,8 +1,10 @@
 @let current = snapshot.data.current;
 @let units = snapshot.data.current_units;
+@let hourlyUnits = snapshot.data.hourly_units;
+@let daily = snapshot.data.daily;
 @let dailyUnits = snapshot.data.daily_units;
 @let weather = condition(current?.weather_code);
-<ion-card class="weather-hero glass">
+<ion-card class="notice">
   <div class="hero-top">
     <span class="eyebrow">CURRENT WEATHER</span><span class="model-badge">Model forecast</span>
   </div>
@@ -39,7 +41,43 @@
     ><ion-icon name="flag-outline" aria-hidden="true" /><span>Wind speed</span
     ><strong>{{ measurement(current?.wind_speed_10m, units?.wind_speed_10m) }}</strong></ion-card
   >
+  <ion-card class="metric glass"
+    ><ion-icon name="sunny-outline" aria-hidden="true" /><span>UV index</span
+    ><strong>{{ measurement(current?.uv_index, units?.uv_index) }}</strong></ion-card
+  >
 </div>
+<div class="section-heading">
+  <h2>Today</h2>
+  <span>Sun and safety</span>
+</div>
+<div class="metrics today-metrics">
+  <ion-card class="metric glass"
+    ><ion-icon name="sunny-outline" aria-hidden="true" /><span>Sunrise</span
+    ><strong>{{ modelTime(daily?.sunrise?.[0] ?? undefined) }}</strong></ion-card
+  >
+  <ion-card class="metric glass"
+    ><ion-icon name="sunny-outline" aria-hidden="true" /><span>Sunset</span
+    ><strong>{{ modelTime(daily?.sunset?.[0] ?? undefined) }}</strong></ion-card
+  >
+</div>
+<div class="section-heading">
+  <h2>Hourly forecast</h2>
+  <span>Next 12 hours</span>
+</div>
+@if (snapshot.hours.length) {
+  <div class="hourly-list glass">
+    @for (hour of snapshot.hours; track hour.time) {
+      <div class="hourly-item">
+        <strong>{{ hourLabel(hour.time) }}</strong>
+        <ion-icon [name]="condition(hour.code).icon" aria-hidden="true" />
+        <b>{{ measurement(hour.temperature, hourlyUnits?.temperature_2m) }}</b>
+        <span>{{ measurement(hour.rainProbability, hourlyUnits?.precipitation_probability) }} rain</span>
+      </div>
+    }
+  </div>
+} @else {
+  <p class="notice">Hourly forecast unavailable from the provider.</p>
+}
 @if (details) {
   <div class="section-heading">
     <h2>7-day forecast</h2>

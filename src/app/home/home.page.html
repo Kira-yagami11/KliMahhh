@@ -1,6 +1,6 @@
 <app-page-header title="KliMahhh" />
 <ion-content
-  ><main class="page-shell">
+  ><app-weather-background [snapshot]="state().snapshot" /><main class="page-shell">
     <p class="eyebrow green">NUEVA ECIJA · PHILIPPINES</p>
     <h1>Your local weather,<br />a little clearer.</h1>
     <p class="intro">Current conditions and the week ahead for five Nueva Ecija cities.</p>
@@ -17,6 +17,14 @@
         <ion-select-option [value]="location.id">{{ location.name }}</ion-select-option> }
       </ion-select>
     </div>
+    @if (state().snapshot?.data; as weatherData) {
+      @if (weatherNotice(weatherData); as notice) {
+        <div class="notice weather-notice" role="status">
+          <ion-icon [name]="notice.icon" aria-hidden="true" />
+          <div><h3>{{ notice.title }}</h3><p>{{ notice.message }}</p></div>
+        </div>
+      }
+    }
     @if (state().loading) {
     <div class="loading-state" role="status">
       <ion-spinner name="crescent" />

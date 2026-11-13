@@ -1,19 +1,19 @@
 <app-page-header title="About Our Group" [back]="true" />
 <ion-content
-  ><main class="page-shell">
+  ><app-weather-background [snapshot]="weatherState().snapshot" /><main class="page-shell">
     
     <h1>Built for our<br />local everyday.</h1>
     <p class="intro">
       KliMahhh makes current conditions and seven-day forecasts easy to read for five selected cities in Nueva Ecija.
     </p>
-    <ion-card class="about-card glass"
+    <ion-card class="notice"
       ><span class="eyebrow green">THE PROJECT</span>
       <h2>KliMahhh</h2>
       <p>
         A hybrid Android weather application developed using Ionic, Angular, TypeScript, and Capacitor as part of the
         Mobile Application Development final case study.
       </p>
-      <p class="course">{{ group.courseYearSection }}</p></ion-card
+      <p>| {{ group.courseYearSection }}</p></ion-card
     >
     <div class="section-heading">
       <h2>Meet our group</h2>
@@ -31,7 +31,7 @@
       }</ion-list
     >
     <br />
-    <ion-card class="about-card glass"
+    <ion-card class="notice"
       ><span class="eyebrow green">OPEN DATA, CLEAR SOURCES</span>
       <h2>Powered by Open-Meteo</h2>
       <p>
@@ -52,6 +52,7 @@
         >. Supported cities: Cabanatuan, San Jose City, Palayan, Gapan, and Science City of Muñoz.
       </p></ion-card
     >
+    <br/>
     <div class="notice">
       <h2 >A little context</h2>
       <p>

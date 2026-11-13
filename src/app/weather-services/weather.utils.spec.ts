@@ -1,4 +1,13 @@
-import { condition, dailyForecasts, dayLabel, measurement, modelTime } from './weather.utils';
+import {
+  condition,
+  dailyForecasts,
+  dayLabel,
+  hourlyForecasts,
+  measurement,
+  modelTime,
+  weatherBackground,
+  weatherNotice,
+} from './weather.utils';
 
 describe('weather display rules', () => {
   it('preserves zero and labels missing measurements', () => {
@@ -15,6 +24,36 @@ describe('weather display rules', () => {
     expect(condition(99).icon).toBe('thunderstorm-outline');
     expect(condition(12345).label).toBe('Unknown condition');
     expect(condition(null).label).toBe('Unknown condition');
+  });
+  it('selects supplied backgrounds for weather codes and nighttime', () => {
+    expect(weatherBackground(0, '2026-10-28T12:00').src).toBe('assets/backgrounds/sunny.webp');
+    expect(weatherBackground(0, '2026-10-28T12:00').contrast).toBe('light');
+    expect(weatherBackground(63, '2026-10-28T12:00').src).toBe('assets/backgrounds/rain.jpeg');
+    expect(weatherBackground(95, '2026-10-28T12:00').src).toBe('assets/backgrounds/thunderstorm.webp');
+    expect(weatherBackground(0, '2026-10-28T22:00')).toMatchObject({
+      src: 'assets/backgrounds/night.mp4',
+      contrast: 'dark',
+    });
+  });
+  it('builds the next hourly forecast window from the current model time', () => {
+    const hours = hourlyForecasts({
+      current: { time: '2026-10-28T02:00' },
+      hourly: {
+        time: ['2026-10-28T01:00', '2026-10-28T02:00', '2026-10-28T03:00'],
+        temperature_2m: [25, 26, 27],
+        precipitation_probability: [10, 20, 30],
+      },
+    });
+    expect(hours).toHaveLength(2);
+    expect(hours[0]).toMatchObject({ time: '2026-10-28T02:00', temperature: 26, rainProbability: 20 });
+  });
+  it('prioritizes severe weather and heat safety notices', () => {
+    expect(weatherNotice({ current: { weather_code: 95, apparent_temperature: 40 } })?.title).toBe(
+      'Severe weather reminder',
+    );
+    expect(weatherNotice({ current: { apparent_temperature: 38 } })?.message).toContain('Stay hydrated');
+    expect(weatherNotice({ current: { uv_index: 8 } })?.title).toBe('High UV reminder');
+    expect(weatherNotice({ current: { weather_code: 0 } })).toBeNull();
   });
   it('keeps date-only forecast labels on their original day', () => {
     expect(dayLabel('2026-10-28')).toBe('Wed, Oct 28');

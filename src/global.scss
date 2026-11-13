@@ -25,44 +25,21 @@
 @import '@ionic/angular/css/text-transformation.css';
 @import '@ionic/angular/css/flex-utils.css';
 
-/**
- * Ionic Dark Mode
- * -----------------------------------------------------
- * For more info, please see:
- * https://ionicframework.com/docs/theming/dark-mode
- */
-
-@import '@ionic/angular/css/palettes/dark.class.css';
-
 :root {
   --blue: #5db8f2;
   --green: #50c878;
   --accent: #50c878;
-  --text: #fff;
-  --muted: rgba(255, 255, 255, 0.74);
-  --glass: rgba(255, 255, 255, 0.07);
-  --glass-strong: rgba(255, 255, 255, 0.16);
-  --fallback: rgba(16, 22, 28, 0.88);
-  --border: rgba(255, 255, 255, 0.2);
-  --shadow: rgba(0, 0, 0, 0.5);
-  --blur: 22px;
+  --text: #050505;
+  --muted: rgba(0, 0, 0, 0.64);
+  --glass: transparent;
+  --glass-strong: transparent;
+  --fallback: transparent;
+  --border: rgba(10, 50, 80, 0.16);
+  --shadow: rgba(30, 80, 120, 0.16);
+  --blur: 30px;
   --field-bg: rgba(255, 255, 255, 0.94);
   --field-fg: #000;
   --field-ph: #5c6670;
-  --bg0: #000;
-  --bg: radial-gradient(65% 55% at 12% 8%, rgba(93, 184, 242, 0.5), transparent 70%),
-    radial-gradient(60% 55% at 90% 88%, rgba(80, 200, 120, 0.4), transparent 70%),
-    linear-gradient(180deg, #03070b, #07141b);
-}
-
-html:not(.ion-palette-dark) {
-  --text: #050505;
-  --muted: rgba(0, 0, 0, 0.64);
-  --glass: rgba(255, 255, 255, 0.55);
-  --glass-strong: rgba(255, 255, 255, 0.85);
-  --fallback: rgba(255, 255, 255, 0.92);
-  --border: rgba(10, 50, 80, 0.16);
-  --shadow: rgba(30, 80, 120, 0.16);
   --bg0: #fff;
   --bg: radial-gradient(60% 50% at 15% 10%, rgba(93, 184, 242, 0.5), transparent 70%),
     radial-gradient(55% 50% at 90% 85%, rgba(80, 200, 120, 0.4), transparent 70%),
@@ -90,42 +67,42 @@ ion-content {
   --color: var(--text);
 }
 
-.bglogo {
-  position: fixed;
-  z-index: 0;
-  pointer-events: none;
-  object-fit: contain;
-  width: max(85vmin, 520px);
-  height: max(85vmin, 520px);
-  opacity: 0.4;
-  filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.35));
+app-home.weather-contrast-light,
+app-details.weather-contrast-light,
+app-about.weather-contrast-light {
+  --text: #08111d;
+  --muted: rgba(8, 17, 29, 0.72);
+  --glass: transparent;
+  --glass-strong: transparent;
+  --border: rgba(8, 17, 29, 0.18);
+  --shadow: rgba(8, 17, 29, 0.24);
 }
 
-.bl1 {
-  top: 50%;
-  right: calc(max(85vmin, 520px) / -2);
-  margin-top: calc(max(85vmin, 520px) / -2);
+app-home.weather-contrast-dark,
+app-details.weather-contrast-dark,
+app-about.weather-contrast-dark {
+  --text: #fff;
+  --muted: rgba(255, 255, 255, 0.78);
+  --glass: transparent;
+  --glass-strong: transparent;
+  --border: rgba(255, 255, 255, 0.3);
+  --shadow: rgba(0, 0, 0, 0.48);
 }
 
-.bl2 {
-  width: max(55vmin, 360px);
-  height: max(55vmin, 360px);
-  bottom: calc(max(55vmin, 360px) / -2);
-  left: calc(max(55vmin, 360px) / -2);
-  opacity: 0.28;
+app-home.weather-contrast-dark h1,
+app-home.weather-contrast-dark h2,
+app-home.weather-contrast-dark h3,
+app-home.weather-contrast-dark p,
+app-details.weather-contrast-dark h1,
+app-details.weather-contrast-dark h2,
+app-details.weather-contrast-dark h3,
+app-details.weather-contrast-dark p,
+app-about.weather-contrast-dark h1,
+app-about.weather-contrast-dark h2,
+app-about.weather-contrast-dark h3,
+app-about.weather-contrast-dark p {
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.55);
 }
-
-html:not(.ion-palette-dark) .bl1 { opacity: 0.3; }
-html:not(.ion-palette-dark) .bl2 { opacity: 0.22; }
-html.ion-palette-dark .bl1 { opacity: 0.58; }
-html.ion-palette-dark .bl2 { opacity: 0.4; }
-
-@media (prefers-reduced-motion: no-preference) {
-  .bl1 { animation: spin 140s linear infinite; }
-  .bl2 { animation: spin 110s linear infinite reverse; }
-}
-
-@keyframes spin { to { transform: rotate(360deg); } }
 
 .glass {
   --background: var(--fallback);
@@ -159,10 +136,10 @@ ion-header {
 .eyebrow, .intro, .retrieved, .section-heading > span, .metric span, .local-note p span, .source-note { color: var(--muted); }
 .blue { color: var(--blue); }
 .green { color: var(--blue); }
-html.ion-palette-dark .green { color: var(--green); }
 .intro { max-width: 500px; }
 
 .location-picker {
+  background: var(--glass);
   border-radius: 999px;
   box-shadow: 0 6px 16px var(--shadow);
 }
@@ -191,10 +168,39 @@ html.ion-palette-dark .green { color: var(--green); }
 }
 
 .hero-weather-icon, .metric ion-icon, .location-picker > ion-icon { color: var(--blue); }
-html.ion-palette-dark .location-picker > ion-icon { color: var(--green); }
 .metric ion-icon { background: rgba(93, 184, 242, 0.16); }
 .forecast-list { overflow: hidden; padding: 4px 0; }
 .forecast-day { --background: transparent; --color: var(--text); }
+.hourly-list {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 10px;
+  border: 1px solid var(--border);
+  scrollbar-width: thin;
+}
+.hourly-item {
+  display: flex;
+  min-width: 82px;
+  align-items: center;
+  flex-direction: column;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 10px;
+  text-align: center;
+}
+.hourly-item ion-icon { color: var(--blue); font-size: 20px; }
+.hourly-item b, .hourly-item strong { color: var(--text); }
+.hourly-item span { white-space: nowrap; }
+.weather-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  margin-top: 12px;
+  padding: 14px 16px;
+}
+.weather-notice > ion-icon { color: var(--blue); flex: 0 0 auto; font-size: 22px; }
+.weather-notice h3 { margin: 0 0 4px; }
 .local-note { border: 1px solid var(--border); }
 .about-card, .notice, .loading-state, .empty-state { background: var(--glass); border: 1px solid var(--border); box-shadow: 0 14px 40px var(--shadow); }
 a { color: var(--blue); }
@@ -202,7 +208,6 @@ ion-button { --border-radius: 999px; --background: var(--green); --color: #000; 
 ion-button[fill='clear'] { --background: transparent; --color: var(--text); }
 ion-button[fill='outline'] { --border-color: var(--border); --color: var(--text); }
 ion-back-button { --color: var(--text); }
-.tbtn { width: 44px; height: 44px; --border-radius: 50%; --background: var(--glass-strong); --color: var(--text); }
 button:focus-visible, a:focus-visible, ion-button:focus-visible, ion-select:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
 
 @media (max-width: 520px) {
@@ -242,7 +247,7 @@ button:focus-visible, a:focus-visible, ion-button:focus-visible, ion-select:focu
 }
 
 .weather-hero.glass .model-badge {
-  background: rgba(255, 255, 255, 0.2);
+  background: transparent;
   border-color: var(--border);
   color: var(--text);
 }
@@ -305,7 +310,7 @@ ion-button {
   text-transform: none;
 }
 .location-picker {
-  background: #fff;
+  background: var(--glass);
   border: 1px solid #e0e6ef;
   border-radius: 14px;
   display: flex;
@@ -322,6 +327,20 @@ ion-button {
 .location-picker ion-select {
   width: 100%;
   min-height: 58px;
+  --color: var(--text);
+  --placeholder-color: var(--muted);
+  --highlight-color: #245ddb;
+  color: var(--text);
+}
+.location-picker ion-select::part(label) {
+  color: var(--muted);
+}
+.location-picker ion-select::part(text) {
+  color: var(--text);
+  font-weight: 500;
+}
+.location-picker ion-select::part(icon) {
+  color: var(--muted);
 }
 ion-card {
   box-shadow: none;
@@ -658,71 +677,71 @@ ion-card {
   }
 }
 
-html.ion-palette-dark {
-  --ion-background-color: transparent;
-  --ion-text-color: var(--text);
-  --ion-card-background: var(--glass);
-  --ion-item-background: transparent;
-  --ion-toolbar-background: transparent;
-  --ion-border-color: var(--border);
-  background-color: var(--bg0);
-  background-image: var(--bg);
+app-home.weather-contrast-dark .section-heading > span,
+app-home.weather-contrast-dark .metric span,
+app-home.weather-contrast-dark .retrieved,
+app-home.weather-contrast-dark .local-note p span,
+app-home.weather-contrast-dark .source-note,
+app-details.weather-contrast-dark .section-heading > span,
+app-details.weather-contrast-dark .metric span,
+app-details.weather-contrast-dark .retrieved,
+app-details.weather-contrast-dark .source-note,
+app-about.weather-contrast-dark .section-heading > span,
+app-about.weather-contrast-dark .source-note {
+  color: var(--muted);
 }
 
-html.ion-palette-dark body,
-html.ion-palette-dark ion-app,
-html.ion-palette-dark ion-content {
-  background: transparent;
+app-home.weather-contrast-dark .local-note,
+app-home.weather-contrast-dark .notice,
+app-details.weather-contrast-dark .notice,
+app-about.weather-contrast-dark .notice {
+  background: var(--glass-strong);
+  border-color: var(--border);
   color: var(--text);
 }
 
-html.ion-palette-dark a {
-  color: var(--blue);
+app-home.weather-contrast-dark .notice h3,
+app-details.weather-contrast-dark .notice h3,
+app-details.weather-contrast-dark .forecast-day h3,
+app-details.weather-contrast-dark .forecast-values b {
+  color: var(--text) !important;
 }
 
-html.ion-palette-dark .location-picker,
-html.ion-palette-dark .loading-state,
-html.ion-palette-dark .empty-state,
-html.ion-palette-dark ion-card,
-html.ion-palette-dark .forecast-list,
-html.ion-palette-dark .team-list {
+app-details.weather-contrast-dark .forecast-list {
   background: var(--glass);
   border-color: var(--border);
 }
 
-html.ion-palette-dark .location-picker ion-select,
-html.ion-palette-dark ion-item {
+app-details.weather-contrast-dark .forecast-day {
+  --color: var(--text);
+  --border-color: var(--border);
+}
+
+app-details.weather-contrast-dark .forecast-day p,
+app-details.weather-contrast-dark .forecast-values {
+  color: var(--muted);
+}
+
+app-details.weather-contrast-dark .forecast-day .rain {
+  color: var(--blue);
+}
+
+app-details.weather-contrast-dark .forecast-day ion-icon {
+  color: var(--blue);
+}
+
+app-about.weather-contrast-dark .about-card,
+app-about.weather-contrast-dark .team-list {
+  background: var(--glass);
+  border-color: var(--border);
+}
+
+app-about.weather-contrast-dark .about-card p,
+app-about.weather-contrast-dark .team-list p {
+  color: var(--muted);
+}
+
+app-about.weather-contrast-dark .team-list ion-item {
   --background: transparent;
   --color: var(--text);
-}
-
-html.ion-palette-dark .intro,
-html.ion-palette-dark .metric span,
-html.ion-palette-dark .retrieved,
-html.ion-palette-dark .loading-state p,
-html.ion-palette-dark .empty-state p,
-html.ion-palette-dark .forecast-day p,
-html.ion-palette-dark .forecast-values,
-html.ion-palette-dark .about-card p,
-html.ion-palette-dark .team-list p,
-html.ion-palette-dark .source-note,
-html.ion-palette-dark .local-note p span {
-color: var(--muted);
-}
-
-html.ion-palette-dark .local-note,
-html.ion-palette-dark .notice {
-background: var(--glass);
-color: var(--text);
-}
-
-html.ion-palette-dark .notice h3,
-html.ion-palette-dark .forecast-day h3,
-html.ion-palette-dark .forecast-values b,
-html.ion-palette-dark .course {
-  color: var(--text) !important;
-}
-
-html.ion-palette-dark .source-note a {
-  color: var(--blue);
 }

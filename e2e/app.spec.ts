@@ -64,22 +64,6 @@ test('home selection, forecast route, cached data, About and back navigation', a
   await expect(page).toHaveURL(/\/home$/);
 });
 
-test('dark mode toggles and persists across reloads', async ({ page }) => {
-  await page.route('https://api.open-meteo.com/**', (route) => route.fulfill({ json: fixture }));
-  await page.goto('/home');
-
-  const toggle = page.getByRole('button', { name: 'Toggle dark mode' });
-  await expect(toggle).toHaveAttribute('aria-pressed', 'false');
-  await toggle.click();
-  await expect(page.locator('html')).toHaveClass(/ion-palette-dark/);
-  await expect(toggle).toHaveAttribute('aria-pressed', 'true');
-  expect(await page.evaluate(() => localStorage.getItem('ecija-weather-theme'))).toBe('dark');
-
-  await page.reload();
-  await expect(page.locator('html')).toHaveClass(/ion-palette-dark/);
-  await expect(page.getByRole('button', { name: 'Toggle dark mode' })).toHaveAttribute('aria-pressed', 'true');
-});
-
 test('direct details, reload, zero and missing measurements, fresh refresh', async ({ page }) => {
   let requests = 0;
   await page.route('https://api.open-meteo.com/**', (route) => {

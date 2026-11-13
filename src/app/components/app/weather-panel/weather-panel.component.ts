@@ -15,7 +15,7 @@ import {
 } from 'ionicons/icons';
 
 import type { WeatherSnapshot } from '../../../weather-services/weather.models';
-import { condition, dayLabel, measurement, modelTime, retrievalTime } from '../../../weather-services/weather.utils';
+import { condition, dayLabel, hourLabel, measurement, modelTime, retrievalTime } from '../../../weather-services/weather.utils';
 
 @Component({
   selector: 'app-weather-panel',
@@ -30,6 +30,7 @@ export class WeatherPanelComponent {
   readonly measurement = measurement;
   readonly dayLabel = dayLabel;
   readonly modelTime = modelTime;
+  readonly hourLabel = hourLabel;
   readonly retrievalTime = retrievalTime;
   constructor() {
     addIcons({

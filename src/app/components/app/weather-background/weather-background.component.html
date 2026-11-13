@@ -1,0 +1,7 @@
+@let background = weatherBackground(snapshot?.data.current?.weather_code, snapshot?.data.current?.time);
+@if (background.type === 'video') {
+  <video class="background-media" autoplay muted loop playsinline [src]="background.src" [attr.aria-label]="background.alt"></video>
+} @else {
+  <img class="background-media" [src]="background.src" [alt]="background.alt" />
+}
+<div class="background-shade" aria-hidden="true"></div>

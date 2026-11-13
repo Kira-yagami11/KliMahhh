@@ -6,7 +6,7 @@ import { catchError, map, of, startWith, switchMap, timeout } from 'rxjs';
 import type { WeatherLocation } from '../config/locations';
 
 import type { WeatherRequest, WeatherResponse, WeatherSnapshot, WeatherState } from './weather.models';
-import { dailyForecasts } from './weather.utils';
+import { dailyForecasts, hourlyForecasts } from './weather.utils';
 
 export const WEATHER_API = 'https://api.open-meteo.com/v1/forecast';
 
@@ -18,18 +18,32 @@ export class WeatherService {
     const params = new HttpParams()
       .set('latitude', location.latitude)
       .set('longitude', location.longitude)
-      .set('current', 'temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m')
-      .set('daily', 'weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max')
+      .set(
+        'current',
+        'temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,uv_index',
+      )
+      .set('hourly', 'temperature_2m,apparent_temperature,weather_code,precipitation_probability,uv_index')
+      .set(
+        'daily',
+        'weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,sunrise,sunset,uv_index_max',
+      )
       .set('timezone', 'Asia/Manila')
       .set('temperature_unit', 'celsius')
       .set('wind_speed_unit', 'kmh')
-      .set('forecast_days', 7);
+      .set('forecast_days', 7)
+      .set('forecast_hours', 24);
 
     return this.http.get<WeatherResponse>(WEATHER_API, { params }).pipe(
       timeout(20_000),
       map((data): WeatherSnapshot => {
         if (!data || typeof data !== 'object' || Array.isArray(data)) throw new Error('Invalid weather response');
-        return { location, data, days: dailyForecasts(data), fetchedAt: new Date().toISOString() };
+        return {
+          location,
+          data,
+          days: dailyForecasts(data),
+          hours: hourlyForecasts(data),
+          fetchedAt: new Date().toISOString(),
+        };
       }),
     );
   }

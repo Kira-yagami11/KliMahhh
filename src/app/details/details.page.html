@@ -1,6 +1,6 @@
 <app-page-header title="Weather details" [back]="true" />
 <ion-content
-  ><main class="page-shell">
+  ><app-weather-background [snapshot]="state().snapshot" /><main class="page-shell">
     @if (location(); as selected) {
     <div class="details-heading">
       <div>
