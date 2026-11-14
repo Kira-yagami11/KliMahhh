@@ -1,4 +1,4 @@
-<app-page-header title="KliMahhh" />
+
 <ion-content
   ><app-weather-background [snapshot]="state().snapshot" /><main class="page-shell">
     <p class="eyebrow green">NUEVA ECIJA · PHILIPPINES</p>
@@ -23,6 +23,7 @@
           <ion-icon [name]="notice.icon" aria-hidden="true" />
           <div><h3>{{ notice.title }}</h3><p>{{ notice.message }}</p></div>
         </div>
+        <br />
       }
     }
     @if (state().loading) {
@@ -46,7 +47,7 @@
       <span class="note-dot"></span>
       <p>Five cities. One province.<br /><span>Forecasts use approximate city-center locations.</span></p>
     </div>
-    <ion-button class="about-link" expand="block" fill="clear" routerLink="/about"
+    <ion-button class="about-link" expand="block" routerLink="/about"
       ><ion-icon slot="start" name="people-outline" aria-hidden="true" />About Our Group</ion-button
     ><app-source-note /></main
 ></ion-content>

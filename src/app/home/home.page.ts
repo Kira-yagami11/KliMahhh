@@ -15,7 +15,6 @@ import {
 } from 'ionicons/icons';
 import { BehaviorSubject } from 'rxjs';
 
-import { PageHeaderComponent } from '../components/app/page-header/page-header.component';
 import { SourceNoteComponent } from '../components/app/source-note/source-note.component';
 import { WeatherPanelComponent } from '../components/app/weather-panel/weather-panel.component';
 import { WeatherBackgroundComponent } from '../components/app/weather-background/weather-background.component';
@@ -36,7 +35,6 @@ import { WeatherService } from '../weather-services/weather.service';
     IonSelect,
     IonSelectOption,
     IonSpinner,
-    PageHeaderComponent,
     SourceNoteComponent,
     WeatherPanelComponent,
     WeatherBackgroundComponent,

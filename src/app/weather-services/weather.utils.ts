@@ -56,6 +56,15 @@ export function condition(code: number | null | undefined): WeatherCondition {
 
 export function weatherBackground(code: number | null | undefined, time?: string): WeatherBackground {
   const hour = time ? Number(time.slice(11, 13)) : NaN;
+  if (code != null && code >= 95)
+    return {
+      type: 'image',
+      src: 'assets/backgrounds/thunderstorm.webp',
+      alt: 'Thunderstorm sky',
+      contrast: 'dark',
+    };
+  if (code != null && ((code >= 51 && code <= 67) || (code >= 80 && code <= 82)))
+    return { type: 'image', src: 'assets/backgrounds/rain.jpeg', alt: 'Rainy sky', contrast: 'dark' };
   if (Number.isInteger(hour) && (hour < 6 || hour >= 18)) {
     return { type: 'video', src: 'assets/backgrounds/night.mp4', alt: 'Night sky', contrast: 'dark' };
   }
@@ -68,23 +77,17 @@ export function weatherBackground(code: number | null | undefined, time?: string
       alt: 'Partly cloudy sky',
       contrast: 'light',
     };
-  if (code === 3)
-    return { type: 'image', src: 'assets/backgrounds/cloudy.webp', alt: 'Cloudy sky', contrast: 'light' };
-  if (code === 45 || code === 48)
-    return { type: 'image', src: 'assets/backgrounds/fog.webp', alt: 'Foggy sky', contrast: 'light' };
-  if (code != null && code >= 95)
+  if (code === 3 || code === 45 || code === 48)
     return {
       type: 'image',
-      src: 'assets/backgrounds/thunderstorm.webp',
-      alt: 'Thunderstorm sky',
-      contrast: 'dark',
+      src: 'assets/backgrounds/partly-cloudy.webp',
+      alt: 'Overcast sky',
+      contrast: 'light',
     };
-  if (code != null && ((code >= 51 && code <= 67) || (code >= 80 && code <= 82)))
-    return { type: 'image', src: 'assets/backgrounds/rain.jpeg', alt: 'Rainy sky', contrast: 'dark' };
   return {
-    type: 'video',
-    src: 'assets/backgrounds/clouds.mp4',
-    alt: 'Clouds moving across the sky',
+    type: 'image',
+    src: 'assets/backgrounds/partly-cloudy.webp',
+    alt: 'Partly cloudy sky',
     contrast: 'light',
   };
 }

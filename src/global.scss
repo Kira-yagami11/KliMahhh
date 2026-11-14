@@ -29,13 +29,13 @@
   --blue: #5db8f2;
   --green: #50c878;
   --accent: #50c878;
-  --text: #050505;
-  --muted: rgba(0, 0, 0, 0.64);
-  --glass: transparent;
-  --glass-strong: transparent;
-  --fallback: transparent;
-  --border: rgba(10, 50, 80, 0.16);
-  --shadow: rgba(30, 80, 120, 0.16);
+  --text: #fff;
+  --muted: rgba(255, 255, 255, 0.78);
+  --glass: rgba(15, 32, 58, 0.78);
+  --glass-strong: rgba(15, 32, 58, 0.9);
+  --fallback: rgba(15, 32, 58, 0.84);
+  --border: rgba(255, 255, 255, 0.3);
+  --shadow: rgba(0, 0, 0, 0.42);
   --blur: 30px;
   --field-bg: rgba(255, 255, 255, 0.94);
   --field-fg: #000;
@@ -70,21 +70,21 @@ ion-content {
 app-home.weather-contrast-light,
 app-details.weather-contrast-light,
 app-about.weather-contrast-light {
-  --text: #08111d;
-  --muted: rgba(8, 17, 29, 0.72);
-  --glass: transparent;
-  --glass-strong: transparent;
-  --border: rgba(8, 17, 29, 0.18);
-  --shadow: rgba(8, 17, 29, 0.24);
+  --text: #fff;
+  --muted: rgba(255, 255, 255, 0.86);
+  --glass: rgba(15, 32, 58, 0.78);
+  --glass-strong: rgba(15, 32, 58, 0.9);
+  --border: rgba(255, 255, 255, 0.3);
+  --shadow: rgba(0, 0, 0, 0.42);
 }
 
 app-home.weather-contrast-dark,
 app-details.weather-contrast-dark,
 app-about.weather-contrast-dark {
   --text: #fff;
-  --muted: rgba(255, 255, 255, 0.78);
-  --glass: transparent;
-  --glass-strong: transparent;
+  --muted: rgba(255, 255, 255, 0.86);
+  --glass: rgba(15, 32, 58, 0.78);
+  --glass-strong: rgba(15, 32, 58, 0.9);
   --border: rgba(255, 255, 255, 0.3);
   --shadow: rgba(0, 0, 0, 0.48);
 }
@@ -497,6 +497,8 @@ ion-card {
 }
 .about-link {
   margin-top: 17px;
+  --background: var(--green);
+  --color: #000;
 }
 .source-note {
   color: #6a7890;
@@ -744,4 +746,111 @@ app-about.weather-contrast-dark .team-list p {
 app-about.weather-contrast-dark .team-list ion-item {
   --background: transparent;
   --color: var(--text);
+}
+
+app-home.weather-contrast-light,
+app-home.weather-contrast-dark,
+app-details.weather-contrast-light,
+app-details.weather-contrast-dark,
+app-about.weather-contrast-light,
+app-about.weather-contrast-dark {
+  .glass,
+  .location-picker,
+  .weather-hero,
+  .metric,
+  .hourly-list,
+  .forecast-list,
+  .team-list,
+  .about-card,
+  .notice,
+  .loading-state,
+  .empty-state,
+  .local-note,
+  .weather-notice {
+    --background: var(--glass);
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: 0 14px 40px var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    color: var(--text);
+  }
+
+  .glass {
+    -webkit-backdrop-filter: blur(var(--blur)) saturate(135%);
+    backdrop-filter: blur(var(--blur)) saturate(135%);
+  }
+
+  .intro,
+  .eyebrow,
+  .green,
+  .blue,
+  .retrieved,
+  .section-heading > span,
+  .metric span,
+  .local-note p span,
+  .source-note,
+  .about-card p,
+  .team-list p,
+  .forecast-day p,
+  .forecast-values {
+    color: var(--muted);
+  }
+
+  .eyebrow,
+  .green,
+  .blue {
+    color: #d7f6ff;
+  }
+
+  .forecast-day h3,
+  .forecast-values b,
+  .about-card .course,
+  .notice h3 {
+    color: var(--text) !important;
+  }
+
+  .location-picker ion-select {
+    --color: var(--text);
+    --placeholder-color: var(--muted);
+    color: var(--text);
+  }
+
+  .location-picker ion-select::part(label),
+  .location-picker ion-select::part(icon) {
+    color: var(--muted);
+  }
+
+  .location-picker ion-select::part(text) {
+    color: var(--text);
+  }
+}
+
+.model-badge {
+  background: var(--glass-strong);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text);
+}
+
+app-home.weather-contrast-light,
+app-home.weather-contrast-dark,
+app-details.weather-contrast-light,
+app-details.weather-contrast-dark,
+app-about.weather-contrast-light,
+app-about.weather-contrast-dark {
+  h1,
+  h2,
+  h3,
+  p,
+  strong,
+  span,
+  a,
+  ion-title,
+  ion-label {
+    text-shadow:
+      -0.5px -0.5px 0 rgba(0, 0, 0, 0.62),
+      0.5px -0.5px 0 rgba(0, 0, 0, 0.62),
+      -0.5px 0.5px 0 rgba(0, 0, 0, 0.62),
+      0.5px 0.5px 0 rgba(0, 0, 0, 0.62);
+  }
 }

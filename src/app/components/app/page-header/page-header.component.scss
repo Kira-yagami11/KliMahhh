@@ -2,29 +2,16 @@
   display: block;
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  font-size: 18px;
-  font-weight: 750;
-  letter-spacing: -0.5px;
-}
-
-.home-toolbar ion-title {
-  text-align: left;
-}
-
-.brand-logo {
-  width: 25px;
-  height: 25px;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
 ion-toolbar {
   --background: transparent;
-  --min-height: 66px;
-  margin: 12px 12px 0;
-  padding: 0 8px;
+  --color: var(--text);
+  --min-height: 48px;
+  margin: 8px 12px 0;
+  padding: 0 4px;
+}
+
+ion-title {
+  color: var(--text);
+  font-size: 17px;
+  font-weight: 700;
 }

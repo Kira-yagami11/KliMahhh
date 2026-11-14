@@ -1,15 +1,6 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar class="glass" [class.home-toolbar]="!back">
-    @if (back) {
-      <ion-buttons slot="start"><ion-back-button defaultHref="/home" text="Back" /></ion-buttons>
-    }
-    <ion-title
-      ><span class="brand">
-        @if (!back) {
-          <img class="brand-logo" src="assets/images/klimahhh-logo.png" alt="" aria-hidden="true" />
-        }
-        {{ title }}</span
-      ></ion-title
-    >
+  <ion-toolbar>
+    <ion-buttons slot="start"><ion-back-button defaultHref="/home" text="Back" /></ion-buttons>
+    <ion-title>{{ title }}</ion-title>
   </ion-toolbar>
 </ion-header>

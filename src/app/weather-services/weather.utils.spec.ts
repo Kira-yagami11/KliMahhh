@@ -30,6 +30,12 @@ describe('weather display rules', () => {
     expect(weatherBackground(0, '2026-10-28T12:00').contrast).toBe('light');
     expect(weatherBackground(63, '2026-10-28T12:00').src).toBe('assets/backgrounds/rain.jpeg');
     expect(weatherBackground(95, '2026-10-28T12:00').src).toBe('assets/backgrounds/thunderstorm.webp');
+    expect(weatherBackground(45, '2026-10-28T12:00')).toMatchObject({
+      src: 'assets/backgrounds/partly-cloudy.webp',
+      alt: 'Overcast sky',
+    });
+    expect(weatherBackground(63, '2026-10-28T22:00').src).toBe('assets/backgrounds/rain.jpeg');
+    expect(weatherBackground(95, '2026-10-28T22:00').src).toBe('assets/backgrounds/thunderstorm.webp');
     expect(weatherBackground(0, '2026-10-28T22:00')).toMatchObject({
       src: 'assets/backgrounds/night.mp4',
       contrast: 'dark',
